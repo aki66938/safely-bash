@@ -25,15 +25,15 @@ PubkeyAuthentication yes
 对于有固定公网🌏IP的用户或企业，主机防火墙限制源端访问即可
 firewalld防火墙设置：
 ```bash
-firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="客户端IP" port ptocol="tcp" port="SSH端口" accept' --permanent
+> firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="客户端IP" port ptocol="tcp" port="SSH端口" accept' --permanent
 ```
 ufw防火墙设置：
 ```bash
-ufw allow from 客户端IP to any port SSH端口
+> ufw allow from 客户端IP to any port SSH端口
 ```
 iptables防火墙设置：
 ```bash
-iptables -A INPUT -p tcp --dport SSH端口 -s 客户端IP -j ACCEPT
+> iptables -A INPUT -p tcp --dport SSH端口 -s 客户端IP -j ACCEPT
 ```
 
 **限制动态公网ip访问**
