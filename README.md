@@ -42,6 +42,7 @@ iptables -A INPUT -p tcp --dport SSH端口 -s 客户端IP -j ACCEPT
 ![image](https://github.com/aki66938/safely-bash/assets/47413858/fd4b4a25-db10-4859-b53a-b2932b2ae94f)
 
 **首先** 需要购买域名，用免费的也可以。常见的DDNS工具如[阿里云ddns](https://github.com/search?q=ddns+ali&type=repositories)、[腾讯ddns](https://github.com/QiQiWan/DNSPod-DDNS)、[ddns-go](https://github.com/jeessy2/ddns-go)等等
+
 **其次** 编写脚本获取域名指向的动态ip地址（原理和ddns类似，可以说是逆ddns）
 以Alpine Linux为例，使用ufw防火墙
 ```shell
@@ -88,6 +89,7 @@ echo "$current_time: 当前防火墙状态:" >> $LOG_FILE
 echo "$ufw_status" >> $LOG_FILE
 echo "===============================" >> $LOG_FILE
 ```
+
 **最后** 设置crontab定时😄执行获取域名解析地址的ip
 
 完结，撒花🎊
