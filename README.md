@@ -4,12 +4,12 @@ Safely running a public-facing server's bash
 
 ## ssh防护
 ssh作为bash的重要入口，以默认端口22直接暴露到公网是十分危险的行为。
-轻则资料丢失财产损失:broken_heart:，重则沦为肉鸡成为祸害他人的工具:fearful:
-因此如何安全地访问云服务器的bash成了一个不大不小的难题:interrobang:。
+轻则资料丢失财产损失💔，重则沦为肉鸡成为祸害他人的工具😨
+因此如何安全地访问云服务器的bash成了一个不大不小的难题⁉️。
 
 **修改端口及登录权限**
 默认端口22应当优先被更改为非常见端口
-同时关闭:x:密码登录，改用密钥:key:登录
+同时关闭❌密码登录，改用密钥🔑 登录
 ```bash
 > vim /etc/ssh/sshd_config
 Port 非常见端口
@@ -22,7 +22,7 @@ PubkeyAuthentication yes
 
 
 **防火墙限制源端访问**
-对于有固定公网IP的用户或企业，主机防火墙限制源端访问即可
+对于有固定公网🌏IP的用户或企业，主机防火墙限制源端访问即可
 firewalld防火墙设置：
 ```bash
 firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="客户端IP" port ptocol="tcp" port="SSH端口" accept' --permanent
@@ -38,11 +38,12 @@ iptables -A INPUT -p tcp --dport SSH端口 -s 客户端IP -j ACCEPT
 
 **限制动态公网ip访问**
 对于无固定公网IP或专线的用户，则需要借助DDNS+bash脚本实现动态限制访问源
-原理如下图:point_down:：
+原理如下图👇：
 ![image](https://github.com/aki66938/safely-bash/assets/47413858/fd4b4a25-db10-4859-b53a-b2932b2ae94f)
 
 **首先** 需要购买域名，用免费的也可以。常见的DDNS工具如[阿里云ddns](https://github.com/search?q=ddns+ali&type=repositories)、[腾讯ddns](https://github.com/QiQiWan/DNSPod-DDNS)、[ddns-go](https://github.com/jeessy2/ddns-go)等等
 **其次** 编写脚本获取域名指向的动态ip地址（原理和ddns类似，可以说是逆ddns）
+以Alpine Linux为例，使用ufw防火墙
 ```shell
 #!/bin/bash
 
@@ -87,6 +88,6 @@ echo "$current_time: 当前防火墙状态:" >> $LOG_FILE
 echo "$ufw_status" >> $LOG_FILE
 echo "===============================" >> $LOG_FILE
 ```
-**最后** 设置crontab定时:clock6:执行获取域名解析地址的ip
+**最后** 设置crontab定时😄执行获取域名解析地址的ip
 
-完结，撒花:tada:
+完结，撒花🎊
