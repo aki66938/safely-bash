@@ -44,7 +44,7 @@ iptables防火墙设置：
 **首先** 需要购买域名，用免费的也可以。常见的DDNS工具如[阿里云ddns](https://github.com/search?q=ddns+ali&type=repositories)、[腾讯ddns](https://github.com/QiQiWan/DNSPod-DDNS)、[ddns-go](https://github.com/jeessy2/ddns-go)等等
 
 **其次** 编写脚本获取域名指向的动态ip地址（原理和ddns类似，可以说是逆ddns）
-以Alpine Linux为例，使用ufw防火墙
+以ufw防火墙为例
 ```shell
 #!/bin/bash
 
